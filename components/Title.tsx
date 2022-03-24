@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, StyleSheet } from "react-native";
-import Colors from "../../constants/colors";
+import Colors from "../constants/colors";
 
 const Title: React.FC = ({ children }) => {
   return <Text style={styles.title}>{children}</Text>;

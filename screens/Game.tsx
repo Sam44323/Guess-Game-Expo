@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import Title from "../components/ui/Title";
+import NumberContainer from "../components/NumberContainer";
+import Title from "../components/Title";
 
 const generateRandomBetween = (
   min: number,
@@ -23,6 +24,7 @@ const Game: React.FC<{ chosen: number }> = ({ chosen }) => {
   return (
     <View style={styles.screen}>
       <Title>Opponent Guess!</Title>
+      <NumberContainer>{currentGuess}</NumberContainer>
       <View>
         <Text>Higher or Lower?</Text>
       </View>
