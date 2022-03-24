@@ -2,7 +2,11 @@ import React from "react";
 import { View, TextInput, StyleSheet, Alert } from "react-native";
 import PrimaryButton from "../components/PrimaryButton";
 
-const StartGame: React.FC = () => {
+interface StartGameProps {
+  numberPicker: (value: number) => void;
+}
+
+const StartGame: React.FC<StartGameProps> = ({ numberPicker }) => {
   const [numberValue, setNumberValue] = React.useState<string>("");
 
   const confirmInputHandler = () => {
@@ -17,7 +21,8 @@ const StartGame: React.FC = () => {
       ]);
       return;
     }
-    console.log("Valid number!");
+    numberPicker(chosenNumber);
+    setNumberValue("");
   };
 
   return (
