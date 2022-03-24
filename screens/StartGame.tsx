@@ -3,6 +3,7 @@ import { View, TextInput, StyleSheet, Alert, Text } from "react-native";
 import PrimaryButton from "../components/PrimaryButton";
 import Title from "../components/Title";
 import Colors from "../constants/colors";
+import Card from "../components/Card";
 
 interface StartGameProps {
   numberPicker: (value: number) => void;
@@ -30,7 +31,7 @@ const StartGame: React.FC<StartGameProps> = ({ numberPicker }) => {
   return (
     <View style={styles.rootContainer}>
       <Title>Guess My Number!</Title>
-      <View style={styles.inputContainer}>
+      <Card>
         <Text style={styles.instructionText}>Enter a number</Text>
         <TextInput
           style={styles.numberInput}
@@ -53,7 +54,7 @@ const StartGame: React.FC<StartGameProps> = ({ numberPicker }) => {
             </PrimaryButton>
           </View>
         </View>
-      </View>
+      </Card>
     </View>
   );
 };
@@ -65,20 +66,6 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: 100,
     alignItems: "center",
-  },
-  inputContainer: {
-    marginTop: 36,
-    marginHorizontal: 24,
-    padding: 16,
-    backgroundColor: Colors.primary800,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 8,
-    elevation: 4,
-    shadowColor: "black",
-    shadowOffset: { width: 0, height: 4 },
-    shadowRadius: 6,
-    shadowOpacity: 0.25,
   },
   instructionText: {
     color: Colors.accent500,
