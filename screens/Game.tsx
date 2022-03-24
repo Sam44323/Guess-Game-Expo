@@ -48,7 +48,6 @@ const Game: React.FC<{ chosen: number; gameOverHandler: () => void }> = ({
     } else {
       minBound = currentGuess;
     }
-    console.log(minBound, maxBound);
     setCurrentGuess(generateRandomBetween(minBound, maxBound, chosen));
   };
 

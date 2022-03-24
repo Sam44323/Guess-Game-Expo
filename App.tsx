@@ -12,6 +12,7 @@ export default function App() {
 
   const numberPicker = (value: number) => {
     setUserNumber(value);
+    setGameOver(false);
   };
 
   let screen = userNumber ? (
