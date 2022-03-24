@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Alert } from "react-native";
 import NumberContainer from "../components/NumberContainer";
 import PrimaryButton from "../components/PrimaryButton";
 import Title from "../components/Title";
@@ -25,11 +25,21 @@ const Game: React.FC<{ chosen: number }> = ({ chosen }) => {
   const [currentGuess, setCurrentGuess] = React.useState(initialGuess);
 
   const nextGuessHandler = (options: "lower" | "greater") => {
+    if (
+      (options === "lower" && currentGuess < chosen) ||
+      (options === "greater" && currentGuess > chosen)
+    ) {
+      Alert.alert("Wrong!", "You know you are wrong!", [
+        { text: "Sorry", style: "cancel" },
+      ]);
+      return;
+    }
     if (options === "lower") {
       maxBound = currentGuess;
     } else {
       minBound = currentGuess;
     }
+    console.log(minBound, maxBound);
     setCurrentGuess(generateRandomBetween(minBound, maxBound, chosen));
   };
 
