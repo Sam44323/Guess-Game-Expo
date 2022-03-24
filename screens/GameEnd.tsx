@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Image, StyleSheet, Text } from "react-native";
+import PrimaryButton from "../components/PrimaryButton";
 import Title from "../components/Title";
 import Colors from "../constants/colors";
 
@@ -14,7 +15,11 @@ const GameEnd: React.FC = () => {
           style={styles.image}
         />
       </View>
-      <Text>Your phone needed X round to guess the number Y</Text>
+      <Text style={styles.summaryText}>
+        Your phone needed <Text style={styles.highlightText}>X</Text> round to
+        guess the number <Text style={styles.highlightText}>Y</Text>
+      </Text>
+      <PrimaryButton handlerFunction={() => {}}>Start New Game</PrimaryButton>
     </View>
   );
 };
@@ -40,5 +45,15 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
     height: "100%",
+  },
+  summaryText: {
+    fontFamily: "open-sans",
+    fontSize: 24,
+    textAlign: "center",
+    marginBottom: 14,
+  },
+  highlightText: {
+    fontFamily: "open-sans-bold",
+    color: Colors.primary500,
   },
 });
