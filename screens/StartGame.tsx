@@ -3,6 +3,8 @@ import { View, TextInput, StyleSheet } from "react-native";
 import PrimaryButton from "../components/PrimaryButton";
 
 const StartGame: React.FC = () => {
+  const [numberValue, setNumberValue] = React.useState<string>("");
+
   return (
     <View style={styles.inputContainer}>
       <TextInput
@@ -11,6 +13,8 @@ const StartGame: React.FC = () => {
         keyboardType="number-pad"
         autoCapitalize="none"
         autoCorrect={false}
+        value={numberValue}
+        onChange={(value) => setNumberValue(value.nativeEvent.text)}
       />
       <View style={styles.buttonsContainer}>
         <View style={[styles.buttonContainer, { marginRight: 4 }]}>
@@ -31,7 +35,7 @@ const styles = StyleSheet.create({
     marginTop: 100,
     marginHorizontal: 24,
     padding: 16,
-    backgroundColor: "#4e0329",
+    backgroundColor: "#3b021f",
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 8,
