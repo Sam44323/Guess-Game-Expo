@@ -13,7 +13,7 @@ export default function App() {
   };
 
   const screen = userNumber ? (
-    <Game />
+    <Game chosen={userNumber} />
   ) : (
     <StartGame numberPicker={numberPicker} />
   );
