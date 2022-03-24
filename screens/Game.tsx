@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import NumberContainer from "../components/NumberContainer";
+import PrimaryButton from "../components/PrimaryButton";
 import Title from "../components/Title";
 
 const generateRandomBetween = (
@@ -17,9 +18,20 @@ const generateRandomBetween = (
   }
 };
 
+let [minBound, maxBound] = [1, 100];
+
 const Game: React.FC<{ chosen: number }> = ({ chosen }) => {
-  const initialGuess = generateRandomBetween(1, 100, chosen);
+  const initialGuess = generateRandomBetween(minBound, maxBound, chosen);
   const [currentGuess, setCurrentGuess] = React.useState(initialGuess);
+
+  const nextGuessHandler = (options: "lower" | "greater") => {
+    if (options === "lower") {
+      maxBound = currentGuess;
+    } else {
+      minBound = currentGuess;
+    }
+    setCurrentGuess(generateRandomBetween(minBound, maxBound, chosen));
+  };
 
   return (
     <View style={styles.screen}>
@@ -27,6 +39,14 @@ const Game: React.FC<{ chosen: number }> = ({ chosen }) => {
       <NumberContainer>{currentGuess}</NumberContainer>
       <View>
         <Text>Higher or Lower?</Text>
+        <View>
+          <PrimaryButton handlerFunction={() => nextGuessHandler("greater")}>
+            +
+          </PrimaryButton>
+          <PrimaryButton handlerFunction={() => nextGuessHandler("lower")}>
+            -
+          </PrimaryButton>
+        </View>
       </View>
       <View>
         <Text>Log Rounds</Text>
