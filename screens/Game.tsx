@@ -22,19 +22,26 @@ const generateRandomBetween = (
 };
 
 let [minBound, maxBound] = [1, 100];
+let counter = 0;
 
-const Game: React.FC<{ chosen: number; gameOverHandler: () => void }> = ({
-  chosen,
-  gameOverHandler,
-}) => {
+const Game: React.FC<{
+  chosen: number;
+  gameOverHandler: (value: number) => void;
+}> = ({ chosen, gameOverHandler }) => {
   const initialGuess = generateRandomBetween(minBound, maxBound, chosen);
   const [currentGuess, setCurrentGuess] = React.useState(initialGuess);
 
   useEffect(() => {
-    if (maxBound - minBound === 2) {
-      gameOverHandler();
+    if (maxBound - minBound <= 2) {
+      gameOverHandler(counter);
     }
   }, [currentGuess]);
+
+  useEffect(() => {
+    maxBound = 100;
+    minBound = 1;
+    counter = 0;
+  }, []);
 
   const nextGuessHandler = (options: "lower" | "greater") => {
     if (
@@ -51,6 +58,7 @@ const Game: React.FC<{ chosen: number; gameOverHandler: () => void }> = ({
     } else {
       minBound = currentGuess;
     }
+    counter++;
     setCurrentGuess(generateRandomBetween(minBound, maxBound, chosen));
   };
 
@@ -79,9 +87,6 @@ const Game: React.FC<{ chosen: number; gameOverHandler: () => void }> = ({
           </View>
         </View>
       </Card>
-      <View>
-        <Text>Log Rounds</Text>
-      </View>
     </View>
   );
 };

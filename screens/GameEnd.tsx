@@ -4,7 +4,13 @@ import PrimaryButton from "../components/PrimaryButton";
 import Title from "../components/Title";
 import Colors from "../constants/colors";
 
-const GameEnd: React.FC = () => {
+interface GameEndProps {
+  rounds: number;
+  userNumber: number;
+  onRestart: () => void;
+}
+
+const GameEnd: React.FC<GameEndProps> = ({ rounds, userNumber, onRestart }) => {
   return (
     <View style={styles.rootContainer}>
       <Title>GAME OVER!</Title>
@@ -16,10 +22,11 @@ const GameEnd: React.FC = () => {
         />
       </View>
       <Text style={styles.summaryText}>
-        Your phone needed <Text style={styles.highlightText}>X</Text> round to
-        guess the number <Text style={styles.highlightText}>Y</Text>
+        Your phone needed <Text style={styles.highlightText}>{rounds}</Text>{" "}
+        round to guess the number{" "}
+        <Text style={styles.highlightText}>{userNumber}</Text>
       </Text>
-      <PrimaryButton handlerFunction={() => {}}>Start New Game</PrimaryButton>
+      <PrimaryButton handlerFunction={onRestart}>Start New Game</PrimaryButton>
     </View>
   );
 };
