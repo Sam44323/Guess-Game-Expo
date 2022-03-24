@@ -1,5 +1,11 @@
 import React from "react";
-import { View, TextInput, StyleSheet, Alert } from "react-native";
+import {
+  View,
+  TextInput,
+  StyleSheet,
+  Alert,
+  useWindowDimensions,
+} from "react-native";
 import PrimaryButton from "../components/PrimaryButton";
 import Title from "../components/Title";
 import Colors from "../constants/colors";
@@ -12,6 +18,7 @@ interface StartGameProps {
 
 const StartGame: React.FC<StartGameProps> = ({ numberPicker }) => {
   const [numberValue, setNumberValue] = React.useState<string>("");
+  const { width, height } = useWindowDimensions();
 
   const confirmInputHandler = () => {
     const chosenNumber = parseInt(numberValue);
@@ -29,8 +36,10 @@ const StartGame: React.FC<StartGameProps> = ({ numberPicker }) => {
     setNumberValue("");
   };
 
+  const marginTopDistance = height < 380 ? 30 : 100;
+
   return (
-    <View style={styles.rootContainer}>
+    <View style={[styles.rootContainer, { marginTop: marginTopDistance }]}>
       <Title>Guess My Number!</Title>
       <Card>
         <InstructionText>Enter a number</InstructionText>
@@ -65,7 +74,6 @@ export default StartGame;
 const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
-    marginTop: 100,
     alignItems: "center",
   },
   instructionText: {
