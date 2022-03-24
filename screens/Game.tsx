@@ -58,7 +58,13 @@ const Game: React.FC<{ chosen: number; gameOverHandler: () => void }> = ({
       <Title>Opponent Guess!</Title>
       <NumberContainer>{currentGuess}</NumberContainer>
       <Card>
-        <InstructionText>Higher or Lower?</InstructionText>
+        <InstructionText
+          style={{
+            marginBottom: 18,
+          }}
+        >
+          Higher or Lower?
+        </InstructionText>
         <View style={styles.buttonsContainer}>
           <View style={[styles.buttonContainer, { marginRight: 4 }]}>
             <PrimaryButton handlerFunction={() => nextGuessHandler("greater")}>
@@ -88,7 +94,6 @@ const styles = StyleSheet.create({
   },
   buttonsContainer: {
     flexDirection: "row",
-    marginTop: 18,
   },
   buttonContainer: {
     flex: 1,
