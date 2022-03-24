@@ -10,5 +10,12 @@ npm-debug.*
 *.orig.*
 web-build/
 
+# hashing
+..gpg
+.gpg
+
+# IDE
+.vscode
+
 # macOS
 .DS_Store
