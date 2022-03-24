@@ -21,9 +21,9 @@ export default function App() {
     <LinearGradient style={styles.rootScreen} colors={["#4e0329", "#ddb52f"]}>
       <ImageBackground
         source={require("./assets/background.png")}
+        resizeMode="cover"
         height={1}
         width={1}
-        resizeMode="cover"
         style={styles.rootScreen}
         imageStyle={styles.backgroundImage}
       >
