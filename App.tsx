@@ -5,10 +5,15 @@ import StartGame from "./screens/StartGame";
 import Game from "./screens/Game";
 import Colors from "./constants/colors";
 import GameEnd from "./screens/GameEnd";
+import { useFonts } from "expo-font";
 
 export default function App() {
   const [userNumber, setUserNumber] = useState<number>(0);
   const [gameOver, setGameOver] = useState<boolean>(false);
+  useFonts({
+    "open-sans": require("./assets/fonts/OpenSans-Regular.ttf"),
+    "open-sans-bold": require("./assets/fonts/OpenSans-Bold.ttf"),
+  });
 
   const numberPicker = (value: number) => {
     setUserNumber(value);
