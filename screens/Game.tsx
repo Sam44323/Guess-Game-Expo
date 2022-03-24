@@ -58,7 +58,7 @@ const Game: React.FC<{ chosen: number; gameOverHandler: () => void }> = ({
       <Title>Opponent Guess!</Title>
       <NumberContainer>{currentGuess}</NumberContainer>
       <Card>
-        <Text>Higher or Lower?</Text>
+        <InstructionText>Higher or Lower?</InstructionText>
         <View>
           <PrimaryButton handlerFunction={() => nextGuessHandler("greater")}>
             +
