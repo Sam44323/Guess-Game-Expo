@@ -5,6 +5,8 @@ import PrimaryButton from "../components/PrimaryButton";
 const StartGame: React.FC = () => {
   const [numberValue, setNumberValue] = React.useState<string>("");
 
+  const confirmInputHandler = () => {};
+
   return (
     <View style={styles.inputContainer}>
       <TextInput
@@ -18,10 +20,14 @@ const StartGame: React.FC = () => {
       />
       <View style={styles.buttonsContainer}>
         <View style={[styles.buttonContainer, { marginRight: 4 }]}>
-          <PrimaryButton>Reset</PrimaryButton>
+          <PrimaryButton handlerFunction={() => setNumberValue("")}>
+            Reset
+          </PrimaryButton>
         </View>
         <View style={styles.buttonContainer}>
-          <PrimaryButton>Confirm</PrimaryButton>
+          <PrimaryButton handlerFunction={confirmInputHandler}>
+            Confirm
+          </PrimaryButton>
         </View>
       </View>
     </View>

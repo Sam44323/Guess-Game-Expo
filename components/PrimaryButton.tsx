@@ -1,9 +1,14 @@
 import React from "react";
 import { StyleSheet, Text, View, Pressable } from "react-native";
 
-const PrimaryButton: React.FC = ({ children }) => {
-  const pressHandler = () => {};
+interface PrimaryButtonProps {
+  handlerFunction: () => void;
+}
 
+const PrimaryButton: React.FC<PrimaryButtonProps> = ({
+  children,
+  handlerFunction,
+}) => {
   return (
     <View style={styles.buttonOuterContainer}>
       <Pressable
@@ -12,7 +17,7 @@ const PrimaryButton: React.FC = ({ children }) => {
             ? [styles.pressed, styles.buttonInnerContainer]
             : styles.buttonInnerContainer
         }
-        onPress={pressHandler}
+        onPress={handlerFunction}
         android_ripple={{ color: "#640233" }}
       >
         <Text style={styles.buttonText}>{children}</Text>
