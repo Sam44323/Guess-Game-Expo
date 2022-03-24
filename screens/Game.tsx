@@ -5,6 +5,7 @@ import PrimaryButton from "../components/PrimaryButton";
 import Title from "../components/Title";
 import Card from "../components/Card";
 import InstructionText from "../components/InstructionText";
+import { Ionicons } from "@expo/vector-icons";
 
 const generateRandomBetween = (
   min: number,
@@ -66,14 +67,14 @@ const Game: React.FC<{ chosen: number; gameOverHandler: () => void }> = ({
           Higher or Lower?
         </InstructionText>
         <View style={styles.buttonsContainer}>
-          <View style={[styles.buttonContainer, { marginRight: 4 }]}>
-            <PrimaryButton handlerFunction={() => nextGuessHandler("greater")}>
-              +
+          <View style={[styles.buttonContainer, , { marginRight: 4 }]}>
+            <PrimaryButton handlerFunction={() => nextGuessHandler("lower")}>
+              <Ionicons name="md-remove" size={24} />
             </PrimaryButton>
           </View>
           <View style={styles.buttonContainer}>
-            <PrimaryButton handlerFunction={() => nextGuessHandler("lower")}>
-              -
+            <PrimaryButton handlerFunction={() => nextGuessHandler("greater")}>
+              <Ionicons name="md-add" size={24} />
             </PrimaryButton>
           </View>
         </View>
