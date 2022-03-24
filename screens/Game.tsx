@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text, StyleSheet, Alert } from "react-native";
 import NumberContainer from "../components/NumberContainer";
 import PrimaryButton from "../components/PrimaryButton";
@@ -20,9 +20,18 @@ const generateRandomBetween = (
 
 let [minBound, maxBound] = [1, 100];
 
-const Game: React.FC<{ chosen: number }> = ({ chosen }) => {
+const Game: React.FC<{ chosen: number; gameOverHandler: () => void }> = ({
+  chosen,
+  gameOverHandler,
+}) => {
   const initialGuess = generateRandomBetween(minBound, maxBound, chosen);
   const [currentGuess, setCurrentGuess] = React.useState(initialGuess);
+
+  useEffect(() => {
+    if (maxBound - minBound === 2) {
+      gameOverHandler();
+    }
+  }, [currentGuess]);
 
   const nextGuessHandler = (options: "lower" | "greater") => {
     if (

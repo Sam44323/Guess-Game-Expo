@@ -4,19 +4,23 @@ import { LinearGradient } from "expo-linear-gradient";
 import StartGame from "./screens/StartGame";
 import Game from "./screens/Game";
 import Colors from "./constants/colors";
+import GameEnd from "./screens/GameEnd";
 
 export default function App() {
   const [userNumber, setUserNumber] = useState<number>(0);
+  const [gameOver, setGameOver] = useState<boolean>(false);
 
   const numberPicker = (value: number) => {
     setUserNumber(value);
   };
 
-  const screen = userNumber ? (
-    <Game chosen={userNumber} />
+  let screen = userNumber ? (
+    <Game chosen={userNumber} gameOverHandler={() => setGameOver(true)} />
   ) : (
     <StartGame numberPicker={numberPicker} />
   );
+
+  screen = gameOver ? <GameEnd /> : screen;
 
   return (
     <LinearGradient
