@@ -12,8 +12,14 @@ const StartGame: React.FC = () => {
         autoCapitalize="none"
         autoCorrect={false}
       />
-      <PrimaryButton>Reset</PrimaryButton>
-      <PrimaryButton>Confirm</PrimaryButton>
+      <View style={styles.buttonsContainer}>
+        <View style={[styles.buttonContainer, { marginRight: 4 }]}>
+          <PrimaryButton>Reset</PrimaryButton>
+        </View>
+        <View style={styles.buttonContainer}>
+          <PrimaryButton>Confirm</PrimaryButton>
+        </View>
+      </View>
     </View>
   );
 };
@@ -26,6 +32,8 @@ const styles = StyleSheet.create({
     marginHorizontal: 24,
     padding: 16,
     backgroundColor: "#4e0329",
+    justifyContent: "center",
+    alignItems: "center",
     borderRadius: 8,
     elevation: 4,
     shadowColor: "black",
@@ -43,5 +51,11 @@ const styles = StyleSheet.create({
     color: "#ddb52f",
     marginVertical: 8,
     fontWeight: "bold",
+  },
+  buttonsContainer: {
+    flexDirection: "row",
+  },
+  buttonContainer: {
+    flex: 1,
   },
 });
