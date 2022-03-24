@@ -1,5 +1,11 @@
 import React, { useEffect } from "react";
-import { View, Text, StyleSheet, Alert } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Alert,
+  useWindowDimensions,
+} from "react-native";
 import NumberContainer from "../components/NumberContainer";
 import PrimaryButton from "../components/PrimaryButton";
 import Title from "../components/Title";
@@ -30,6 +36,7 @@ const Game: React.FC<{
 }> = ({ chosen, gameOverHandler }) => {
   const initialGuess = generateRandomBetween(minBound, maxBound, chosen);
   const [currentGuess, setCurrentGuess] = React.useState(initialGuess);
+  const { width, height } = useWindowDimensions();
 
   useEffect(() => {
     if (maxBound - minBound <= 2) {
@@ -62,9 +69,8 @@ const Game: React.FC<{
     setCurrentGuess(generateRandomBetween(minBound, maxBound, chosen));
   };
 
-  return (
-    <View style={styles.screen}>
-      <Title>Opponent Guess!</Title>
+  let content = (
+    <>
       <NumberContainer>{currentGuess}</NumberContainer>
       <Card>
         <InstructionText
@@ -87,6 +93,40 @@ const Game: React.FC<{
           </View>
         </View>
       </Card>
+    </>
+  );
+
+  if (width > 500) {
+    content = (
+      <>
+        <InstructionText
+          style={{
+            marginBottom: 18,
+          }}
+        >
+          Higher or Lower?
+        </InstructionText>
+        <View style={styles.buttonsContainerWide}>
+          <View style={[styles.buttonContainer, , { marginRight: 4 }]}>
+            <PrimaryButton handlerFunction={() => nextGuessHandler("lower")}>
+              <Ionicons name="md-remove" size={24} />
+            </PrimaryButton>
+          </View>
+          <NumberContainer>{currentGuess}</NumberContainer>
+          <View style={styles.buttonContainer}>
+            <PrimaryButton handlerFunction={() => nextGuessHandler("greater")}>
+              <Ionicons name="md-add" size={24} />
+            </PrimaryButton>
+          </View>
+        </View>
+      </>
+    );
+  }
+
+  return (
+    <View style={styles.screen}>
+      <Title>Opponent Guess!</Title>
+      {content}
     </View>
   );
 };
@@ -104,5 +144,9 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flex: 1,
+  },
+  buttonsContainerWide: {
+    flexDirection: "row",
+    alignItems: "center",
   },
 });
