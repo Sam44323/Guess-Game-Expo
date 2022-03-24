@@ -99,13 +99,6 @@ const Game: React.FC<{
   if (width > 500) {
     content = (
       <>
-        <InstructionText
-          style={{
-            marginBottom: 18,
-          }}
-        >
-          Higher or Lower?
-        </InstructionText>
         <View style={styles.buttonsContainerWide}>
           <View style={[styles.buttonContainer, , { marginRight: 4 }]}>
             <PrimaryButton handlerFunction={() => nextGuessHandler("lower")}>
