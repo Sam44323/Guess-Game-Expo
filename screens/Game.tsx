@@ -125,7 +125,6 @@ const Game: React.FC<{
 };
 
 export default Game;
-
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
