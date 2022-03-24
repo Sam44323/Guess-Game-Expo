@@ -4,6 +4,7 @@ import PrimaryButton from "../components/PrimaryButton";
 import Title from "../components/Title";
 import Colors from "../constants/colors";
 import Card from "../components/Card";
+import InstructionText from "../components/InstructionText";
 
 interface StartGameProps {
   numberPicker: (value: number) => void;
@@ -32,7 +33,7 @@ const StartGame: React.FC<StartGameProps> = ({ numberPicker }) => {
     <View style={styles.rootContainer}>
       <Title>Guess My Number!</Title>
       <Card>
-        <Text style={styles.instructionText}>Enter a number</Text>
+        <InstructionText>Enter a number</InstructionText>
         <TextInput
           style={styles.numberInput}
           maxLength={2}
